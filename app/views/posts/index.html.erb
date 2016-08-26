@@ -1,0 +1,23 @@
+<% unless @posts.empty? %>
+<div class="container">
+  <!-- <div class="jumbotron"> -->
+  <% @posts.each do |post| %>
+<div class="row">
+  <div class="col-sm-7">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <b><%= link_to "#{post.user.username.upcase}:", user_posts_path(post.user) %></b>
+        <br>
+        <em><%= link_to "#{post.title}" , post_path(post) %> (<%= post.comments.count %>)<br> </em>
+        <span class="text-muted"><%= post.created_at.strftime('%b %d, %Y') %></span>
+      </div>
+      <div class="panel-body">
+        <em><%= post.text %></em>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+<!-- </div> -->
+</div
+<% end %>

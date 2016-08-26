@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="jumbotron", style="max-width:700px">
+    <h2>Edit <%= resource_name.to_s.humanize %></h2><br>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => "form-horizontal"}) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10", style="max-width:300px">
+      <%= f.email_field :email, autofocus: true, :type => "email", :class => "form-control", :id => "inputEmail13", :placeholder => "Email"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputUsernamel13l3" class="col-sm-2 control-label">Username</label>
+    <div class="col-sm-10", style="max-width:300px">
+      <%= f.text_field :username, :class => "form-control", :id => "inputUsernamel13", :placeholder => "Username"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputAbout13" class="col-sm-2 control-label">About you</label>
+    <div class="col-sm-10", style="max-width:300px">
+      <%= f.text_area :user_info, :class => "form-control", :id => "inputAbout13", :placeholder => "About" , :style => "max-width:400px" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10", style="max-width:300px">
+      <%= f.password_field :password, autocomplete: "off", :type => "password", :class => "form-control", :id => "inputPassword13", :placeholder => "New password"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Confirmation</label>
+    <div class="col-sm-10", style="max-width:300px">
+      <%= f.password_field :password_confirmation, autocomplete: "off", :type => "password", :class => "form-control", :id => "inputPassword13", :placeholder => "New password confirmation"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Current password</label><i>(we need your current password to confirm your changes)</i>
+    <div class="col-sm-10", style="max-width:300px">
+      <%= f.password_field :current_password, autocomplete: "off", :type => "password", :class => "form-control", :id => "inputPassword13", :placeholder => "Current password"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Update my account", :type => "submit", :class => "btn btn-success" %>
+    </div>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class => "btn btn-danger" %>
+
+</div>
+<%= render "devise/shared/links" %>
+</div>

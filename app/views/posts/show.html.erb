@@ -1,0 +1,47 @@
+<div class="container">
+<div class="jumbotron", style="resize:none">
+  <h1 align="center"><%= @post.title.upcase %></h1>
+  <h2>(<%= link_to "#{@post.user.username}", user_posts_path(@post.user) %>)</h2>
+  <span class="text-muted"><%= @post.created_at.strftime('%b %d, %Y') %></span><br>
+  <p><em>
+    <%= @post.text %><br><br>
+  </em></p>
+  <% if current_user&.admin? %>
+    <%= link_to "Open post as admin", admins_set_post_path(@post),:type => "button", :class => "btn btn-primary" %>
+  <% elsif current_user&.id == @post.user_id %>
+    <%= link_to "Edit", edit_post_path(@post),:type => "button", :class => "btn btn-primary" %>
+    <%= link_to "Delete", @post, method: :delete, data: { confirm: "Are you sure?" }, :type => "button", :class => "btn btn-danger" %>
+  <% end %>
+</div>
+
+<% if @comments.length >= 1 %>
+<% @comments.each do |comment| %>
+
+<div class="row">
+  <div class="col-sm-5">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong><%= link_to "#{comment.user.username}", user_posts_path(comment.user) %></strong> <span class="text-muted"><%= comment.created_at.strftime('%b %d, %Y') %></span>
+      </div>
+      <div class="panel-body">
+        <%= comment.text %>
+      </div>
+    </div>
+  </div>
+  <% if current_user&.id == comment.user_id %>
+  <%= link_to "Delete comment", [comment.post, comment], data: { confirm: "Are you sure?" }, method: :delete, :class => "btn btn-danger" %>
+  <% end %>
+</div>
+
+<% end %>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= form_for([@post, @post.comments.build]) do |f| %>
+      <div class="input-group">
+        <span class="input-group-addon" id="sizing-addon1">Your comment</span>
+        <%= f.text_area :text,:class => "form-control", :style => "max-width:500px; min-width:500px; max-height:100px; min-height:100px" %><br>
+      </div><br>
+    <%= f.submit "Comment" , class: "btn btn-success"%>
+  <% end %>
+<% end %>

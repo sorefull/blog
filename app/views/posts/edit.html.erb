@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="jumbotron", style = "width:775px">
+  <div class="page-header">
+    <h2>Editing post</h2>
+  </div>
+  <%= render "source/form.html.erb" %><br>
+  <% if current_user.admin? %>
+  <button type="button" class="btn btn-default"><%= link_to "Back to post (admin)", admins_set_post_path(@post) %></button>
+  <% else %>
+  <button type="button" class="btn btn-default"><%= link_to "Back to post", post_path(@post) %></button>
+  <% end %>
+</div>
+</div>

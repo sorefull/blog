@@ -1,0 +1,31 @@
+<div class="container">
+<div class="jumbotron", style="resize:none">
+  <h1 align="center"><%= @post.title.upcase %></h1>
+  <h2>(<%= link_to "#{@post.user.username}", admins_set_user_path(@post.user) %>)</h2>
+  <span class="text-muted"><%= @post.created_at.strftime('%b %d, %Y') %></span><br>
+  <p><em>
+    <%= @post.text %><br><br>
+  </em></p>
+    <%= link_to "Edit", edit_post_path(@post), :type => "button", :class => "btn btn-primary" %>
+    <%= link_to "Delete", @post, method: :delete, data: { confirm: "Are you sure?" }, :type => "button", :class => "btn btn-danger" %>
+    <%= link_to "Go to user interface", post_path(@post), :type => "button", :class => "btn btn-primary" %>
+</div>
+
+<% if @post.comments.length >= 1 %>
+<% @post.comments.each do |comment| %>
+<div class="row">
+  <div class="col-sm-5">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong><%= link_to "#{comment.user.username}", admins_set_user_path(comment.user) %></strong> <span class="text-muted"><%= comment.created_at.strftime('%b %d, %Y') %></span>
+      </div>
+      <div class="panel-body">
+        <%= comment.text %>
+      </div>
+    </div>
+  </div>
+  <%= link_to "Delete comment", [comment.post, comment], data: { confirm: "Are you sure?" }, method: :delete, :class => "btn btn-danger" %>
+</div>
+<% end %>
+<% end %>
+</div>

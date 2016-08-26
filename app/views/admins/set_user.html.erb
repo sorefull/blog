@@ -1,0 +1,24 @@
+<div class="container">
+
+  <div class="jumbotron">
+    <h2><%= link_to "#{@user.username.capitalize}", user_posts_path(@user) %> page<span class="text-danger"><%= "[admin]" if @user.admin? %></span><%= " (YOU)" if @user == current_user %> </h2>
+    <p>
+      User has <%= link_to @user.posts.count, admins_user_posts_path(@user) %> post(s).
+    </p>
+    <ul>
+      <% @user.posts.each do |post| %>
+      <li><%= link_to post.title, admins_set_post_path(post) %> (<%= post.comments.count %>)</li>
+      <% end %>
+    </ul>
+    <p>
+      User has <%= link_to @user.comments.count, admins_user_comments_path(@user) %> comment(s).
+    </p>
+    <ul>
+      <% @user.comments.each do |comment| %>
+      <li><%= comment.text %> (<%= link_to comment.post.title, admins_set_post_path(comment.post) %>)</li>
+      <% end %>
+    </ul>
+    <%= link_to 'Open user interface', user_posts_path(@user), :class => "btn btn-primary" %>
+    <%= link_to "#{@user.admin? ? 'Make a user!' : 'Make an admin!'}", admins_chenge_path(@user), :class => "btn btn-success" %>
+  </div>
+</div>

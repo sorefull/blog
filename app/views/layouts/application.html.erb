@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SpalahBlog</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <%= render "source/header.html.erb" %>
+
+  <br><br><br><br>
+
+<div class="container", align="center">
+
+  <% if notice %>
+  <div class="alert alert-success", style = "width:400px">
+    <strong>Success!</strong> <%= notice %>
+  </div>
+  <% end %>
+
+  <% if alert %>
+  <div class="alert alert-danger", style = "width:400px">
+    <strong>Alert!</strong> <%= alert %>
+  </div>
+  <% end %>
+
+</div>
+
+<%= yield %>
+
+</body>
+</html>

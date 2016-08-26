@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "Main wall", posts_path, {:class => "navbar-brand"} %>
+      <% if user_signed_in? %>
+      <%= link_to "My Page (#{current_user.username})", user_posts_path(current_user), {:class => "navbar-brand"} %>
+      <% if current_user.admin? %>
+      <%= link_to "Admin Page", admins_user_index_path, {:class => "navbar-brand"} %>
+      <% end %>
+      <% end %>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <% unless user_signed_in? %>
+        <li><%= link_to "Sign up", new_user_registration_path %></li>
+        <li><%= link_to "Log in", new_user_session_path %></li>
+        <% else %>
+        <li><%= link_to "New post", new_post_path %></li>
+        <li><%= link_to "Change my account", edit_user_registration_path(current_user) %></li>
+        <li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
+        <% end %>
+        <li><%= link_to "About", about_path %></li>
+      </ul>
+    </div>
+  </div>
+</nav>

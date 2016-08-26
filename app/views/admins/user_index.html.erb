@@ -1,0 +1,28 @@
+<div class="container">
+<table class="table">
+  <thead class="grey">
+    <tr>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Post count</th>
+      <th>Comment count</th>
+    </tr>
+  </thead>
+<tbody>
+<% @users.each do |user| %>
+  <% if user == current_user %>
+    <tr class="bg-success">
+  <% elsif user.admin? %>
+    <tr class="bg-danger">
+  <% else %>
+    <tr class="bg-deffault">
+  <% end %>
+    <td><%= link_to "#{user.username}#{user == current_user ? ' [you]' : (user.admin? ? ' [admin]' : '')}", admins_set_user_path(user) %></td>
+    <td><%= user.email %></td>
+    <td><%= link_to user.posts.count, admins_user_posts_path(user) %></td>
+    <td><%= link_to user.comments.count, admins_user_comments_path(user) %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+</div>
