@@ -10,4 +10,5 @@ User.create(username: 'Admin',
             email: 'adminuser@example.com',
             password: 'adminadmin',
             password_confirmation: 'adminadmin',
-            role: 1)
+            role: 1,
+            user_info: 'admin of this site')
