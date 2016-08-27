@@ -8,10 +8,10 @@
   <% end %>
   <span class="text-danger"><%= "[admin]" if @user.admin? %></span></h2>
 
-  <% unless @user.user_info.empty? %>
-  <p>
-    <b>About me:</b> <%= @user.user_info %>
-  </p>
+  <% unless @user.user_info.nil? %>
+    <p>
+      <b>About me:</b> <%= @user.user_info %>
+    </p>
   <% end %>
   <% if current_user&.admin? %>
     <br><%= link_to "Set this account as admin", admins_set_user_path(@user), :class => "btn btn-primary" %>
