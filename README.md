@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+You can see this site on heroku (https://floating-beyond-23845.herokuapp.com)
 
-Things you may want to cover:
+About: this is blog application with two roles (user, admin), posts, comments and some usefull admin thins.
 
-* Ruby version
+Information:
+* Ruby version 2.3.0
+* Rails version 5.0.0.1
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To run this app you should:
+* Clone this directory;
+* run "sudo apt-get install libpq-dev";
+* bundle this app;
+* run "rails db:migrate";
+* run "rails db:seed" to create admin;
+* run "rails s" to start working and having fun!
