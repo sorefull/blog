@@ -23,4 +23,4 @@ Things you may want to cover:
 
 * https://floating-beyond-23845.herokuapp.com/
 
-* ...
+* You should run "sudo apt-get install libpq-dev" before bundling this app 
