@@ -6,16 +6,20 @@
       User has <%= link_to @user.posts.count, admins_user_posts_path(@user) %> post(s).
     </p>
     <ul>
-      <% @user.posts.each do |post| %>
-      <li><%= link_to post.title, admins_set_post_path(post) %> (<%= post.comments.count %>)</li>
+      <% unless @user.posts.count > 10 %>
+        <% @user.posts.each do |post| %>
+        <li><%= link_to post.title, admins_set_post_path(post) %> (<%= post.comments.count %>)</li>
+        <% end %>
       <% end %>
     </ul>
     <p>
       User has <%= link_to @user.comments.count, admins_user_comments_path(@user) %> comment(s).
     </p>
     <ul>
-      <% @user.comments.each do |comment| %>
-      <li><%= comment.text %> (<%= link_to comment.post.title, admins_set_post_path(comment.post) %>)</li>
+      <% unless @user.comments.count > 10 %>
+        <% @user.comments.each do |comment| %>
+        <li><%= comment.text %> (<%= link_to comment.post.title, admins_set_post_path(comment.post) %>)</li>
+        <% end %>
       <% end %>
     </ul>
     <%= link_to 'Open user interface', user_posts_path(@user), :class => "btn btn-primary" %>

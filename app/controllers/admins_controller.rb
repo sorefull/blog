@@ -2,17 +2,17 @@ class AdminsController < ApplicationController
   before_action :authenticate_user!, :set_admin
 
   def user_index
-    @users = User.all
+    @users = User.all.paginate(:page => params[:page], :per_page => 30)
   end
 
   def user_posts
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.paginate(:page => params[:page], :per_page => 10)
   end
 
   def user_comments
     @user = User.find(params[:id])
-    @comments = @user.comments
+    @comments = @user.comments.paginate(:page => params[:page], :per_page => 10)
   end
 
   def set_user

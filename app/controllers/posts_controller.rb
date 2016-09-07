@@ -1,17 +1,17 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show, :userindex]
   def index
-    @posts = Post.all
+    @posts = Post.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 7)
   end
 
   def userindex
     @user = User.find(params[:id])
-    @posts = @user.posts.all
+    @posts = @user.posts.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 5)
   end
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments
+    @comments = @post.comments.order('created_at DESC').paginate(:page => params[:page], :per_page => 3)
   end
 
   def new
