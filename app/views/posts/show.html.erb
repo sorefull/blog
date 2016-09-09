@@ -36,6 +36,8 @@
 <% end %>
 <% end %>
 
+<%= will_paginate @comments, renderer: BootstrapPagination::Rails %>
+
 <% if user_signed_in? %>
   <%= form_for([@post, @post.comments.build]) do |f| %>
       <div class="input-group">
