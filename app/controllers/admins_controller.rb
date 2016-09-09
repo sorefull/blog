@@ -33,7 +33,7 @@ class AdminsController < ApplicationController
       end
       redirect_to admins_set_user_path(@user), :notice => "Role was changed to #{@user.role}"
     else
-      redirect_to admins_set_user_path(@user), :alert => "You can't change your role!outes"
+      redirect_to admins_set_user_path(@user), :alert => "You can't change your role!"
     end
   end
 
